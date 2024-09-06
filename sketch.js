@@ -5,13 +5,27 @@ let terrain = [];
 let w, h;
 let flying = 0;
 
+let checkbox;
+let pause = false;
+
 function setup() {
-  createCanvas(400, 400, WEBGL);
+  createCanvas(600, 600, WEBGL);
 
   w = width * 4;
-  h = height * 3;
+  h = height * 4;
   cols = w / scl;
   rows = h / scl;
+
+  checkbox = createCheckbox();
+  checkbox.position(10, 10);
+
+  checkbox.changed(() => {
+    if (checkbox.checked()) {
+      noLoop();
+    } else {
+      loop();
+    }
+  });
 
   for (var x = 0; x < cols; x++) {
     terrain[x] = [];
@@ -22,13 +36,13 @@ function setup() {
 }
 
 function draw() {
-  flying -= 0.1;
+  flying -= 0.2;
 
   let yoff = flying;
   for (var y = 0; y < cols; y++) {
     let xoff = 0;
     for (var x = 0; x < rows; x++) {
-      terrain[x][y] = map(noise(xoff, yoff), 0, 1, -100, 100);
+      terrain[x][y] = map(noise(xoff, yoff), 0, 1, -150, 150);
       xoff += 0.1;
     }
     yoff += 0.1;
