@@ -13,6 +13,7 @@ function draw() {
   stroke(255);
   noFill();
 
+  rotateX(PI / 3);
   translate(-width / 2, -height / 2);
 
   for (let y = 0; y < cols; y++) {
