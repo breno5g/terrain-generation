@@ -3,6 +3,7 @@ let scl = 20;
 let terrain = [];
 
 let w, h;
+let flying = 0;
 
 function setup() {
   createCanvas(400, 400, WEBGL);
@@ -21,10 +22,12 @@ function setup() {
 }
 
 function draw() {
-  let yoff = 0;
-  for (var x = 0; x < cols; x++) {
+  flying -= 0.1;
+
+  let yoff = flying;
+  for (var y = 0; y < cols; y++) {
     let xoff = 0;
-    for (var y = 0; y < rows; y++) {
+    for (var x = 0; x < rows; x++) {
       terrain[x][y] = map(noise(xoff, yoff), 0, 1, -100, 100);
       xoff += 0.1;
     }
