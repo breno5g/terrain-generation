@@ -15,12 +15,22 @@ function setup() {
   for (var x = 0; x < cols; x++) {
     terrain[x] = [];
     for (var y = 0; y < rows; y++) {
-      terrain[x][y] = random(-10, 10);
+      terrain[x][y] = 0;
     }
   }
 }
 
 function draw() {
+  let yoff = 0;
+  for (var x = 0; x < cols; x++) {
+    let xoff = 0;
+    for (var y = 0; y < rows; y++) {
+      terrain[x][y] = map(noise(xoff, yoff), 0, 1, -100, 100);
+      xoff += 0.1;
+    }
+    yoff += 0.1;
+  }
+
   background(0);
   stroke(255);
   noFill();
