@@ -10,14 +10,17 @@ function setup() {
 
 function draw() {
   background(0);
+  stroke(255);
+  noFill();
 
   translate(-width / 2, -height / 2);
 
-  for (let x = 0; x < rows; x++) {
-    for (let y = 0; y < cols; y++) {
-      stroke(255);
-      noFill();
-      rect(x * scl, y * scl, scl, scl);
+  for (let y = 0; y < cols; y++) {
+    beginShape(TRIANGLE_STRIP);
+    for (let x = 0; x < rows; x++) {
+      vertex(x * scl, y * scl);
+      vertex(x * scl, (y + 1) * scl);
     }
+    endShape();
   }
 }
